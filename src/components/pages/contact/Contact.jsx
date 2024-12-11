@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import "./contact.css";
+import './contact.css';
 
-const baseurl = "https://backend-87yy.onrender.com";
+const baseurl = 'https://backend-87yy.onrender.com';
 
 function Contact() {
   const [name, setName] = useState('');
@@ -41,12 +41,12 @@ function Contact() {
   };
 
   return (
-    <div className="contact-container" id="contact">
+    <div className="container" id="contact">
       {/* Address Section */}
-      <div className="address-section">
-        <img 
-          src="https://www.thestatesman.com/wp-content/uploads/2020/04/googl_ED.jpg" 
-          alt="Office Building" 
+      <div className="address">
+        <img
+          src="https://www.thestatesman.com/wp-content/uploads/2020/04/googl_ED.jpg"
+          alt="Office Building"
           className="address-image"
         />
         <h3>Our Address</h3>
@@ -55,7 +55,7 @@ function Contact() {
       </div>
 
       {/* Contact Form Section */}
-      <div className="form-section">
+      <div className="form">
         <h2>Contact Us</h2>
         <form onSubmit={handleSubmit} className="contact-form">
           <div className="form-group">
@@ -92,11 +92,7 @@ function Contact() {
               required
             ></textarea>
           </div>
-          <button
-            type="submit"
-            className="submit-button"
-            disabled={isSubmitting}
-          >
+          <button type="submit" className="submit-button" disabled={isSubmitting}>
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
         </form>
