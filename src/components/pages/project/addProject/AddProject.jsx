@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./add.css"; // CSS for styling
 import { useNavigate } from "react-router-dom";
 
-const baseurl ="https://backend-87yy.onrender.com"
+const baseurl = "https://backend-87yy.onrender.com";
 
 function AddProject() {
   const [projectData, setProjectData] = useState({
@@ -12,7 +12,7 @@ function AddProject() {
     link: "",
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Handle input field changes
   const handleChange = (e) => {
@@ -50,15 +50,12 @@ function AddProject() {
         link: "",
       });
 
-      navigate("/table")
+      // Navigate to the project table
+      navigate("/table");
     } catch (error) {
       console.error("Error adding project:", error);
     }
   };
-
-  const handleNavigate =()=>{
-   
-  }
 
   return (
     <div className="add-project-container">
@@ -102,9 +99,8 @@ function AddProject() {
             required
           />
         </label>
-        <button type="submit">Add Project</button>
+        <button type="submit" className="add-project-button">Add Project</button>
       </form>
-
     </div>
   );
 }

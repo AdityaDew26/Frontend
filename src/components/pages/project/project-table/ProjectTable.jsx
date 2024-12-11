@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./table.css"; // Create CSS for styling
 import { useNavigate } from "react-router-dom";
 
-const baseurl ="https://backend-87yy.onrender.com"
+const baseurl = "https://backend-87yy.onrender.com";
+
 function ProjectTable() {
   const [projects, setProjects] = useState([]);
   const [selectedProjects, setSelectedProjects] = useState([]);
@@ -10,7 +11,7 @@ function ProjectTable() {
 
   useEffect(() => {
     // Fetch projects data from the backend
-    fetch(`${baseurl}/api/projects` )
+    fetch(`${baseurl}/api/projects`)
       .then((response) => response.json())
       .then((data) => {
         setProjects(data);
@@ -42,7 +43,9 @@ function ProjectTable() {
         }
       }
       // Refresh the list after deletion
-      setProjects(projects.filter((project) => !selectedProjects.includes(project._id)));
+      setProjects((prevProjects) =>
+        prevProjects.filter((project) => !selectedProjects.includes(project._id))
+      );
       setSelectedProjects([]); // Clear selected projects
     } catch (error) {
       console.error("Error deleting project:", error);
@@ -58,7 +61,9 @@ function ProjectTable() {
       if (response.ok) {
         console.log(`Project with ID ${projectId} deleted`);
         // Remove the deleted project from the list
-        setProjects(projects.filter((project) => project._id !== projectId));
+        setProjects((prevProjects) =>
+          prevProjects.filter((project) => project._id !== projectId)
+        );
       } else {
         console.error(`Failed to delete project with ID ${projectId}`);
       }
@@ -113,7 +118,9 @@ function ProjectTable() {
               </td>
               <td>
                 <button onClick={() => handleEdit(project._id)}>Edit</button>
-                <button onClick={() => handleDeleteSingle(project._id)}>Delete</button>
+                <button onClick={() => handleDeleteSingle(project._id)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
@@ -122,8 +129,10 @@ function ProjectTable() {
       {selectedProjects.length > 0 && (
         <button onClick={handleDelete}>Delete Selected Projects</button>
       )}
-      <button onClick={handleBack}>Back</button>
-      <button onClick={handleAddNew}>Add New Project</button>
+      <div className="table-buttons">
+        <button onClick={handleBack}>Back</button>
+        <button onClick={handleAddNew}>Add New Project</button>
+      </div>
     </div>
   );
 }

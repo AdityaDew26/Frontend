@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./project.css";
 import { useNavigate } from "react-router-dom";
-const baseurl ="https://backend-87yy.onrender.com"
+
+const baseurl = "https://backend-87yy.onrender.com";
 
 function Project() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const move = useNavigate();
+  const navigate = useNavigate();
 
   // Fetch data from the backend
   useEffect(() => {
-    // Fetching real data from the backend
     fetch(`${baseurl}/api/projects`)
       .then((response) => response.json())
       .then((data) => {
@@ -23,11 +23,11 @@ function Project() {
       });
   }, []);
 
-  const HanldleMove = () => {
-    move("/table");
+  const handleMove = () => {
+    navigate("/table");
   };
 
-  // Dummy project data (will be used if fetch fails or no data is returned)
+  // Dummy project data (used if fetch fails or no data is returned)
   const dummyProjects = [
     {
       _id: "1",
@@ -50,16 +50,15 @@ function Project() {
       image: "https://www-cms.pipedriveassets.com/Embedding-Images-in-Emails.png",
       link: "https://example.com/project-three",
     },
-      {
+    {
       _id: "4",
       name: "Project Four",
-      description: "This is a sample project description for Project Three.",
+      description: "This is a sample project description for Project Four.",
       image: "https://img.freepik.com/free-vector/ecommerce-web-page-concept-illustration_114360-8204.jpg",
       link: "https://example.com/project-four",
-    }
+    },
   ];
 
-  
   const displayProjects = projects.length > 0 ? projects : dummyProjects;
 
   if (loading) {
@@ -78,7 +77,7 @@ function Project() {
               className="project-image"
             />
             <div className="project-details">
-              <h3 className="project-name" >{project.name}</h3>
+              <h3 className="project-name">{project.name}</h3>
               <p className="project-description">{project.description}</p>
               <a
                 href={project.link}
@@ -91,10 +90,8 @@ function Project() {
             </div>
           </div>
         ))}
-   
       </div>
-           <button onClick={HanldleMove}>Show All Projects</button>
-      
+      <button onClick={handleMove}>Show All Projects</button>
     </div>
   );
 }
