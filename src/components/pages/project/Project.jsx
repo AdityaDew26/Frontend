@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./project.css";
 import { useNavigate } from "react-router-dom";
+const baseurl ="https://backend-87yy.onrender.com"
 
 function Project() {
   const [projects, setProjects] = useState([]);
@@ -10,7 +11,7 @@ function Project() {
   // Fetch data from the backend
   useEffect(() => {
     // Fetching real data from the backend
-    fetch("http://localhost:5000/api/projects")
+    fetch(`${baseurl}/api/projects`)
       .then((response) => response.json())
       .then((data) => {
         setProjects(data);

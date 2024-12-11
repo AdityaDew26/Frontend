@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./contact.css"
 
+const baseurl ="https://backend-87yy.onrender.com"
 function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -14,7 +15,7 @@ function Contact() {
     const contactData = { name, email, message };
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch(`${baseurl}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

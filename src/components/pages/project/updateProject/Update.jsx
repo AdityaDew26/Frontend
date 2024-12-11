@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./update.css"
 
-
+const baseurl ="https://backend-87yy.onrender.com"
 function UpdateProject() {
   const { id } = useParams(); // Get the project ID from URL
   const [projectData, setProjectData] = useState({
@@ -15,7 +15,7 @@ function UpdateProject() {
 
   useEffect(() => {
     // Fetch the project data to pre-fill the form
-    fetch(`http://localhost:5000/api/projects/${id}`)
+    fetch(`${baseurl}/api/projects/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setProjectData(data);

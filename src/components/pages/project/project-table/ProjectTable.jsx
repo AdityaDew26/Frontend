@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./table.css"; // Create CSS for styling
 import { useNavigate } from "react-router-dom";
 
+const baseurl ="https://backend-87yy.onrender.com"
 function ProjectTable() {
   const [projects, setProjects] = useState([]);
   const [selectedProjects, setSelectedProjects] = useState([]);
@@ -9,7 +10,7 @@ function ProjectTable() {
 
   useEffect(() => {
     // Fetch projects data from the backend
-    fetch("http://localhost:5000/api/projects")
+    fetch(`${baseurl}/api/projects` )
       .then((response) => response.json())
       .then((data) => {
         setProjects(data);
@@ -31,7 +32,7 @@ function ProjectTable() {
   const handleDelete = async () => {
     try {
       for (const projectId of selectedProjects) {
-        const response = await fetch(`http://localhost:5000/api/projects/${projectId}`, {
+        const response = await fetch(`${baseurl}/api/projects/${projectId}`, {
           method: "DELETE",
         });
         if (response.ok) {
@@ -51,7 +52,7 @@ function ProjectTable() {
   // Handle delete for a single project
   const handleDeleteSingle = async (projectId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/projects/${projectId}`, {
+      const response = await fetch(`${baseurl}/api/projects/${projectId}`, {
         method: "DELETE",
       });
       if (response.ok) {

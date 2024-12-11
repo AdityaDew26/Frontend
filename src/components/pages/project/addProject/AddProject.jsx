@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./add.css"; // CSS for styling
 import { useNavigate } from "react-router-dom";
 
+const baseurl ="https://backend-87yy.onrender.com"
+
 function AddProject() {
   const [projectData, setProjectData] = useState({
     name: "",
@@ -25,7 +27,7 @@ function AddProject() {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
     try {
-      const response = await fetch("http://localhost:5000/api/projects", {
+      const response = await fetch(`${baseurl}/api/projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
