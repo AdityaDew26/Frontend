@@ -5,13 +5,13 @@ import Project from './components/pages/project/Project';
 import AddProject from './components/pages/project/addProject/AddProject';
 import ProjectTable from './components/pages/project/project-table/ProjectTable';
 import UpdateProject from './components/pages/project/updateProject/Update';
-import Navbar from './components/pages/navbar/Navbar';
+
 
 
 const App = () => {
   return (
     <Router>
-       <Navbar/>
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/project' element={<Project/>}/> 

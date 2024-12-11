@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./update.css";
+import "./update.css"
 
-const baseurl = "https://backend-87yy.onrender.com";
 
 function UpdateProject() {
   const { id } = useParams(); // Get the project ID from URL
@@ -16,13 +15,8 @@ function UpdateProject() {
 
   useEffect(() => {
     // Fetch the project data to pre-fill the form
-    fetch(`${baseurl}/api/projects/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch project data");
-        }
-        return response.json();
-      })
+    fetch(`http://localhost:5000/api/projects/${id}`)
+      .then((response) => response.json())
       .then((data) => {
         setProjectData(data);
       })
@@ -42,7 +36,7 @@ function UpdateProject() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${baseurl}/api/projects/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/projects/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -63,9 +57,9 @@ function UpdateProject() {
   };
 
   return (
-    <div className="update-container">
+    <div>
       <h2>Edit Project</h2>
-      <form onSubmit={handleSubmit} className="update-form">
+      <form onSubmit={handleSubmit}>
         <label>
           Project Name:
           <input
@@ -104,7 +98,7 @@ function UpdateProject() {
             required
           />
         </label>
-        <button type="submit" className="update-button">Update Project</button>
+        <button type="submit">Update Project</button>
       </form>
     </div>
   );

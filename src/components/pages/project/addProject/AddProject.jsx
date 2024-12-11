@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./add.css"; // CSS for styling
 import { useNavigate } from "react-router-dom";
 
-const baseurl = "https://backend-87yy.onrender.com";
-
 function AddProject() {
   const [projectData, setProjectData] = useState({
     name: "",
@@ -12,11 +10,11 @@ function AddProject() {
     link: "",
   });
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   // Handle input field changes
   const handleChange = (e) => {
-    const { name, value } = e.target; // Use name and value to dynamically update state
+    const { name, value } = e.target; // Use name and value to dynamically update st ate
     setProjectData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -27,7 +25,7 @@ function AddProject() {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
     try {
-      const response = await fetch(`${baseurl}/api/projects`, {
+      const response = await fetch("http://localhost:5000/api/projects", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,12 +48,15 @@ function AddProject() {
         link: "",
       });
 
-      // Navigate to the project table
-      navigate("/table");
+      navigate("/table")
     } catch (error) {
       console.error("Error adding project:", error);
     }
   };
+
+  const handleNavigate =()=>{
+   
+  }
 
   return (
     <div className="add-project-container">
@@ -99,8 +100,9 @@ function AddProject() {
             required
           />
         </label>
-        <button type="submit" className="add-project-button">Add Project</button>
+        <button type="submit">Add Project</button>
       </form>
+
     </div>
   );
 }
